@@ -9,11 +9,12 @@ class computeucEmployeeWage
 	private static int EMP_RATE_PER_HR;
 	private static int MAX_HRS_IN_MONTH;
 	private static int NUM_OF_WORKING_DAYS;
-	private static int empWage;
-	private static int entry;
+	private static int empWage=0;
+	private static int total = 0;
 
-	public static HashMap<Integer, Integer> companyWage = new HashMap<Integer, Integer>();
-	public static ArrayList<Integer> wagePerCompany = new ArrayList <Integer>();
+	public static HashMap<Integer, Integer> companyWage = new HashMap<>();
+	public static ArrayList <Integer> wagePerCompany = new ArrayList <>();
+	public static HashMap<String, Integer> companyMonthlyWage = new HashMap<>();
 
 	computeucEmployeeWage(String company, int EMP_RATE_PER_HR, int MAX_HRS_IN_MONTH, int NUM_OF_WORKING_DAYS) 
 	{
@@ -21,11 +22,6 @@ class computeucEmployeeWage
 		this.EMP_RATE_PER_HR = EMP_RATE_PER_HR;
 		this.MAX_HRS_IN_MONTH = MAX_HRS_IN_MONTH;
 		this.NUM_OF_WORKING_DAYS = NUM_OF_WORKING_DAYS;
-	}
-
-	public String getCompany() 
-	{
-		return this.company;
 	}
 
 	public static int employeeDailyWage() 
@@ -60,20 +56,19 @@ class computeucEmployeeWage
 			totalWorkingDays++;
 			empWage = EMP_RATE_PER_HR * empHrs;
 			totalEmpWage += empWage;
-		}
+	      	}
 		return totalEmpWage;
 	}
 
 	public static void dailyWageAndMonthlyWage() 
 	{
 		companyWage.put(employeeDailyWage(), employeeMonthlyWage());
-		entry++;
 	}
 
 	public static void printWage() 
 	{
 		for (int i: companyWage.keySet())
-			System.out.println("Daily Wage:"+i+" Total Wage:"+companyWage.get(i));
+			System.out.println(i+" : "+companyWage.get(i));
 	}
 
 	public static void companyWages() 
@@ -85,17 +80,26 @@ class computeucEmployeeWage
 	{
 		System.out.println(wagePerCompany);
 	}
+
+	public static void putTotalWage() 
+	{
+		companyMonthlyWage.put(company, employeeMonthlyWage());
+	}
+
+	public static void getTotalWage(String company) 
+	{
+		System.out.println(company+" : "+companyMonthlyWage.get(company));
+	}
 }
 
 public class EmployeeWage 
 {
-
 	public static void main(String args[])
 	{
 		computeucEmployeeWage company1 = new computeucEmployeeWage("DMart", 20, 110, 26);
-		company1.dailyWageAndMonthlyWage();
+		company1.putTotalWage();
 		computeucEmployeeWage company2 = new computeucEmployeeWage("Reliance", 24, 135, 20);
-		company2.dailyWageAndMonthlyWage();
-		company2.printWage();
+		company2.putTotalWage();
+		company2.getTotalWage("DMart");
 	}
 }
