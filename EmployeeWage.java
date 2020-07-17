@@ -33,7 +33,7 @@ public class EmployeeWage
                 	    case PART_TIME:
                         	    empHrs=fullDayHour/2;
                         	    break;
-                    	case(FULL_TIME):
+                    	case FULL_TIME:
                         	    empHrs=fullDayHour;
                        	 	    break;
                     	default:
