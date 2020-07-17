@@ -36,14 +36,14 @@ class computeucEmployeeWage
             		int empCheck=(int) Math.floor(Math.random()*10)%3;
             		switch(empCheck)
             		{
-                    		case PART_TIME:
-                        		empHrs=fullDayHour/2;
-                        		break;
-                    		case FULL_TIME:
-                            		empHrs=fullDayHour;
-                            		break;
-                    		default:
-                            		empHrs=0;
+                	    case PART_TIME:
+                        	    empHrs=fullDayHour/2;
+                        	    break;
+                    	    case FULL_TIME:
+                            	    empHrs=fullDayHour;
+                                    break;
+                    	    default:
+                            	    empHrs=0;
             		}
             		totalEmpHrs+=empHrs;
             		totalWorkingDays++;
@@ -53,16 +53,18 @@ class computeucEmployeeWage
 		return totalEmpWage;
 	}
 }
+
 public class EmployeeWage 
 {
-	public static computeucEmployeeWage companyWage[] = new computeucEmployeeWage[3];
+	public static ArrayList <Integer> company = new ArrayList <Integer>();
 	public static void main(String args[])
 	{
-		companyWage[0] = new computeucEmployeeWage("DMart", 20, 110, 26);
-		System.out.println(companyWage[0].getCompany()+" : "+companyWage[0].MonthlyWage());
-		companyWage[1] = new computeucEmployeeWage("Reliance", 24, 135, 20);
-		System.out.println(companyWage[1].getCompany()+" : "+companyWage[0].MonthlyWage());
-		companyWage[2] = new computeucEmployeeWage("Big Bazaar", 20, 120, 26);
-		System.out.println(companyWage[2].getCompany()+" : "+companyWage[0].MonthlyWage());
+		computeucEmployeeWage company1 = new computeucEmployeeWage("DMart", 20, 110, 26);
+		computeucEmployeeWage company2 = new computeucEmployeeWage("Reliance", 24, 135, 20);
+		computeucEmployeeWage company3 = new computeucEmployeeWage("Big Bazaar", 20, 120, 26);
+		company.add(company1.MonthlyWage());
+		company.add(company2.MonthlyWage());
+		company.add(company3.MonthlyWage());
+		System.out.println(company);
 	}
 }
